@@ -5,6 +5,7 @@ const colors=require('colors')
 const morgan=require('morgan')
 const cors=require('cors')
 const connectDB=require('./config/db')
+const  path=require('path')
 
 const app=express()
 connectDB()
@@ -24,6 +25,11 @@ app.use('/api/inventory',require('./routes/Inventory.routes'))
 app.use('/api/analytics',require('./routes/analytics.routes'))
 app.use('/api/admin',require('./routes/admin.routes'))
 
+ app.use(express.static(path.join(__dirname, './client/build')));
+ 
+ app.get('*', (req, res) => {
+   res.sendFile(path.join(__dirname, './client/build/index.html'));
+ });
 
 app.listen(process.env.PORT,(req,res)=>{
  console.log("Node server started");
