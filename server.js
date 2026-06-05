@@ -31,7 +31,9 @@ app.use('/api/admin',require('./routes/admin.routes'))
    res.sendFile(path.join(__dirname, './client/build/index.html'));
  });
 
-app.listen(process.env.PORT,(req,res)=>{
- console.log("Node server started");
-})
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+    console.log(`Node server started on port ${PORT}`.bgCyan.white);
+});
 
