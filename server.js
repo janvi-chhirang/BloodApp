@@ -27,9 +27,9 @@ app.use('/api/admin',require('./routes/admin.routes'))
 
  app.use(express.static(path.join(__dirname, './client/build')));
 
- app.get('/:splat*', (req, res) => {
+app.get('*', (req, res) => {
    res.sendFile(path.join(__dirname, './client/build/index.html'));
- });
+});
 
 const PORT = process.env.PORT || 8080;
 
